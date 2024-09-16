@@ -45,7 +45,6 @@
     todos))
 
 (rf/reg-sub ::user-todos
-  :<- [::fb-auth/uid]
   user-todos
   (fn [todos]
     todos))
