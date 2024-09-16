@@ -26,7 +26,7 @@
        {::add-todo-fx {:userId uid
                        :description todo-text}}))))
 
-(defn user-todos [x]
+(defn user-todos [[_ uid]]
   (let [todos (r/atom nil)
         callback (fn [docs]
                    (reset! todos [])
@@ -37,7 +37,7 @@
                                        :data (js->clj (.data doc) :keywordize-keys true)}))))
         db (getFirestore (getApp))
         q (query (collection db "todos")
-                 (where "userId" "==" "OBsKfWJvI6WrZTyTvDoWodriob13"))]
+                 (where "userId" "==" uid))]
     ;; (onAuthStateChanged (getAuth)
     ;;   callback
     ;;   error-callback)

@@ -11,9 +11,9 @@
 
 (defn child-component []
   (let [uid (rf/subscribe [::fb-auth/uid])
-        todos (rf/subscribe [::fb-firestore/user-todos])
+        todos (rf/subscribe [::fb-firestore/user-todos @uid])
         text (r/atom "")]
-    (js/console.log (pr-str @todos))
+
     (fn []
       [:div
        [:div "User ID: " @uid]
